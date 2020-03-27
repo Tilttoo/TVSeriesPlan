@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="10b2a5ad-7052-4b98-8e5a-c601d3d537f6" name="Default Changelist" comment="" />
+    <list default="true" id="10b2a5ad-7052-4b98-8e5a-c601d3d537f6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +47,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585325195441</updated>
-      <workItem from="1585325198518" duration="906000" />
+      <workItem from="1585325198518" duration="1983000" />
+      <workItem from="1585345438299" duration="13000" />
     </task>
     <servers />
   </component>
@@ -56,10 +60,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="830" y="413" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585325296192" />
-    <state x="661" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585325198781">
+    <state x="661" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585345440632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="661" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585325198781" />
+    <state x="661" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585345440632" />
     <state x="623" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1585325319164">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

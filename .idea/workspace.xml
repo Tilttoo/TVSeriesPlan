@@ -24,6 +24,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1Zic8RPWLUxpuSDgwxx2GfXJQzW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -49,6 +50,7 @@
       <updated>1585325195441</updated>
       <workItem from="1585325198518" duration="1983000" />
       <workItem from="1585345438299" duration="13000" />
+      <workItem from="1585346892446" duration="22000" />
     </task>
     <servers />
   </component>
@@ -56,14 +58,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1585346996084">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585346996084" />
     <state x="830" y="413" key="Github.ShareDialog" timestamp="1585325296192">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="830" y="413" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585325296192" />
-    <state x="661" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585345440632">
+    <state x="661" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585346892741">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="661" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585345440632" />
+    <state x="661" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585346892741" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585346957721">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585346957721" />
     <state x="623" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1585325319164">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

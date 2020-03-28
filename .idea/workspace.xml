@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="10b2a5ad-7052-4b98-8e5a-c601d3d537f6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,18 +49,49 @@
       <updated>1585325195441</updated>
       <workItem from="1585325198518" duration="1983000" />
       <workItem from="1585345438299" duration="13000" />
-      <workItem from="1585346892446" duration="22000" />
+      <workItem from="1585346892446" duration="916000" />
     </task>
+    <task id="LOCAL-00001" summary="Test">
+      <created>1585346937674</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1585346937674</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Sprawdzam cos">
+      <created>1585347033521</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585347033521</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Sprawdzam cos">
+      <created>1585347088939</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1585347088939</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Test" />
+    <MESSAGE value="Sprawdzam cos" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1585347079105">
+    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1585347197704">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585347079105" />
+    <state x="585" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1585347197704" />
+    <state x="184" y="86" key="DiffContextDialog" timestamp="1585347196612">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="86" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585347196612" />
     <state x="830" y="413" key="Github.ShareDialog" timestamp="1585325296192">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -70,10 +100,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1585347044706" />
-    <state x="661" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585346892741">
+    <state x="661" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1585392516731">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="661" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585346892741" />
+    <state x="661" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585392516731" />
     <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585346957721">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

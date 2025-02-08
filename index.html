@@ -1,26 +1,243 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-    <!-- Primary Meta Tags -->
-    <title>Piwniczna 69. Obiekt wypoczynkowy</title>
-    <meta name="title" content="Piwniczna 69. Obiekt wypoczynkowy">
-    <meta name="description" content="Obiekt Piwniczna 69 Piwnica u skromnego technologa baz danych. Ustytuowany w miejscowosci Kebab">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planer Tygodniowy</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .planner { display: grid; grid-template-columns: 100px repeat(7, 1fr); grid-template-rows: 40px repeat(24, 1fr); border: 1px solid #ccc; }
+        .planner div { border: 1px solid #ddd; padding: 5px; text-align: center; }
+        .header { font-weight: bold; background: #f0f0f0; }
+        .hour { font-weight: bold; background: #e0e0e0; }
+        .entry { background: #d0f0d0; padding: 2px; cursor: pointer; position: relative; }
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+        .modal button { margin-top: 10px; }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); }
+        .input-group { margin-bottom: 10px; }
+        .watched {background: #b0d0b0; /* A slightly different green color */ text-decoration: line-through; /* Add a strikethrough effect */}
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://mtabor.me">
-    <meta property="og:title" content="Piwniczna 69. Obiekt wypoczynkowy">
-    <meta property="og:description" content="Obiekt Piwniczna 69 Piwnica u skromnego technologa baz danych. Ustytuowany w miejscowosci Kebab">
-    <meta property="og:image" content="http://mtabor.me/background.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="http://mtabor.me">
-    <meta property="twitter:title" content="Piwniczna 69. Obiekt wypoczynkowy">
-    <meta property="twitter:description" content="Obiekt Piwniczna 69 Piwnica u skromnego technologa baz danych. Ustytuowany w miejscowosci Kebab">
-    <meta property="twitter:image" content="http://mtabor.me/background.jpg">
+    </style>
 </head>
 <body>
+    <h1>Planer Tygodniowy</h1>
+    <button onclick="openAddModal()">Dodaj Premierę</button>
+    <div class="planner" id="planner"></div>
+    
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal" id="modal">
+        <h2 id="modalTitle"></h2>
+        <p id="modalInfo"></p>
+        <button onclick="markWatched()">Oznacz jako obejrzane</button>
+        <button onclick="deleteEntry()">Usuń wpis</button>
+        <button onclick="closeModal()">Zamknij</button>
+    </div>
+    
+    <div class="modal-overlay" id="addModalOverlay"></div>
+    <div class="modal" id="addModal">
+        <h2>Dodaj Premierę</h2>
+        <div class="input-group">
+            <label>Dzień tygodnia:</label>
+            <select id="daySelect">
+                <option value="0">Poniedziałek</option>
+                <option value="1">Wtorek</option>
+                <option value="2">Środa</option>
+                <option value="3">Czwartek</option>
+                <option value="4">Piątek</option>
+                <option value="5">Sobota</option>
+                <option value="6">Niedziela</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Godzina (0-23):</label>
+            <input type="number" id="hourInput" min="0" max="23">
+        </div>
+        <div class="input-group">
+            <label>Nazwa serialu:</label>
+            <input type="text" id="titleInput">
+        </div>
+        <div class="input-group">
+            <label>Ilość odcinków:</label>
+            <input type="number" id="episodesInput" min="1">
+        </div>
+        <button onclick="addEntry()">Dodaj</button>
+        <button onclick="closeAddModal()">Anuluj</button>
+    </div>
+    
+    <script>
+        const days = ["Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Ndz"];
+        const planner = document.getElementById("planner");
+        let selectedDay, selectedHour;
 
+        function getStoredData(day, hour) {
+            const data = JSON.parse(localStorage.getItem("plannerData")) || {};
+            return data[`${day}-${hour}`] || null;
+        }
+
+        function saveData(day, hour, title, episodesLeft, watched = false, week = getCurrentWeekNumber()) {
+            let data = JSON.parse(localStorage.getItem("plannerData")) || {};
+            data[`${day}-${hour}`] = { title, episodesLeft, watched, week };
+            localStorage.setItem("plannerData", JSON.stringify(data));
+            renderPlanner();
+        }
+
+
+
+        function renderPlanner() {
+            planner.innerHTML = "";
+            planner.appendChild(document.createElement("div"));
+            days.forEach(day => {
+                let div = document.createElement("div");
+                div.className = "header";
+                div.textContent = day;
+                planner.appendChild(div);
+            });
+            const currentWeekNumber = getCurrentWeekNumber();
+            let data = JSON.parse(localStorage.getItem("plannerData")) || {};
+            for (let hour = 0; hour < 24; hour++) {
+                let hourDiv = document.createElement("div");
+                hourDiv.className = "hour";
+                hourDiv.textContent = `${hour}:00`;
+                planner.appendChild(hourDiv);
+                for (let day = 0; day < 7; day++) {
+                    let cell = document.createElement("div");
+                    cell.dataset.day = day;
+                    cell.dataset.hour = hour;
+                    let storedData = data[`${day}-${hour}`];
+                    if (storedData) {
+                        if (storedData.week !== currentWeekNumber) {
+                            storedData.watched = false;
+                            storedData.week = currentWeekNumber;
+                            data[`${day}-${hour}`] = storedData;
+                        }
+                        let entry = document.createElement("div");
+                        entry.className = "entry";
+                        entry.textContent = `${storedData.title} (${storedData.episodesLeft})`;
+                        if (storedData.watched) {
+                            entry.classList.add("watched");
+                        }
+                        entry.onclick = () => openModal(day, hour, storedData);
+                        cell.appendChild(entry);
+                    }
+                    planner.appendChild(cell);
+                }
+            }
+            localStorage.setItem("plannerData", JSON.stringify(data));
+        }
+
+
+
+        function getCurrentWeekNumber() {
+            const currentDate = new Date();
+            const firstDayOfYear = new Date(currentDate.getFullYear(), 0, 1);
+            const pastDaysOfYear = (currentDate - firstDayOfYear) / 86400000;
+
+            return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+        }
+
+
+        function deleteEntry() {
+            let data = JSON.parse(localStorage.getItem("plannerData")) || {};
+            delete data[`${selectedDay}-${selectedHour}`];
+            localStorage.setItem("plannerData", JSON.stringify(data));
+            renderPlanner();
+            closeModal();
+        }
+
+        function openAddModal() {
+            document.getElementById("addModalOverlay").style.display = "block";
+            document.getElementById("addModal").style.display = "block";
+        }
+
+        function closeAddModal() {
+            document.getElementById("addModalOverlay").style.display = "none";
+            document.getElementById("addModal").style.display = "none";
+        }
+
+        function openModal(day, hour, data) {
+            selectedDay = day;
+            selectedHour = hour;
+            document.getElementById("modalTitle").textContent = data.title;
+            document.getElementById("modalInfo").textContent = `Pozostało ${data.episodesLeft} odcinków.`;
+            document.getElementById("modalOverlay").style.display = "block";
+            document.getElementById("modal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("modalOverlay").style.display = "none";
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function markWatched() {
+            let data = getStoredData(selectedDay, selectedHour);
+            if (!data) return;
+
+            data.episodesLeft = Math.max(0, data.episodesLeft - 1);
+
+            if (data.episodesLeft === 0) {
+                deleteEntry();
+            } else {
+                data.watched = true; // Mark as watched
+                saveData(selectedDay, selectedHour, data.title, data.episodesLeft, data.watched, getCurrentWeekNumber());
+                renderPlanner();
+            }
+
+            closeModal();
+        }
+
+
+
+
+    function addEntry() {
+        let day = document.getElementById("daySelect").value;
+        let hour = document.getElementById("hourInput").value;
+        let title = document.getElementById("titleInput").value.trim();
+        let episodesLeft = document.getElementById("episodesInput").value;
+        
+        if (title === "" || hour === "" || episodesLeft === "") {
+            alert("Wszystkie pola muszą być wypełnione!");
+            return;
+        }
+        
+        hour = parseInt(hour);
+        episodesLeft = parseInt(episodesLeft);
+        
+        if (hour < 0 || hour > 23 || episodesLeft < 1) {
+            alert("Podaj poprawne wartości!");
+            return;
+        }
+        
+        saveData(day, hour, title, episodesLeft, false); // Add watched parameter as false initially
+        closeAddModal();
+        
+        // Set reminder for the new entry
+        setReminder(day, hour, title);
+    }
+
+
+        function setReminder(day, hour, title) {
+            const now = new Date();
+            const reminderTime = new Date();
+            reminderTime.setDate(now.getDate() + ((7 + day - now.getDay()) % 7));
+            reminderTime.setHours(hour, 0, 0, 0);
+
+            const timeout = reminderTime.getTime() - now.getTime();
+
+            if (timeout > 0) {
+                setTimeout(() => {
+                    new Notification(`Reminder: ${title} is starting soon!`);
+                }, timeout);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (Notification.permission !== "granted") {
+                Notification.requestPermission();
+            }
+        });
+
+        
+        renderPlanner();
+    </script>
 </body>
 </html>
